@@ -70,6 +70,11 @@
             font-size: 0.9em;
         }
 
+        /* New rule to hide content until authenticated */
+        #content-container {
+            display: none; 
+        }
+
         /* --- Category Styling --- */
         .category-header {
             font-family: var(--font-header);
@@ -113,7 +118,8 @@
         .file-list li:last-child {
             border-bottom: none;
         }
-        
+
+        /* File Type Icons */
         .file-icon { font-size: 1.2em; text-shadow: 0 0 5px rgba(187, 134, 252, 0.5); }
         .html-icon { color: #ff6666; } 
         .css-icon { color: #6699ff; } 
@@ -125,6 +131,7 @@
         .file-name { font-weight: 500; color: var(--text-light); }
         .file-meta { color: #8f90a1; font-size: 0.85em; }
 
+        /* DOWNLOAD BUTTON FIX */
         .download-btn {
             display: flex;
             justify-content: center;
@@ -159,90 +166,104 @@
     </style>
 </head>
 <body>
+    
     <script>
-    const password = "RS Factor";
-    let attempts = 3;
-    while (attempts > 0) {
-        const entry = prompt("Access denied. Please enter the password:");
-        if (entry === password) {
-            break; 
+        const CORRECT_PASSWORD = "RS_Factor";
+        const MAX_ATTEMPTS = 3;
+        let attempts = 0;
+
+        function authenticate() {
+            while (attempts < MAX_ATTEMPTS) {
+                const entry = prompt("🔒 Private Access Required. Enter Password:");
+                if (entry === CORRECT_PASSWORD) {
+                    document.getElementById('content-container').style.display = 'block';
+                    return;
+                }
+                
+                attempts++;
+                if (attempts >= MAX_ATTEMPTS) {
+                    document.body.innerHTML = "<h1>🔒 ACCESS DENIED</h1><p style='color:#ff6666; text-align:center;'>Too many failed attempts. Access permanently blocked.</p>";
+                    return;
+                }
+                alert(`❌ Incorrect password. ${MAX_ATTEMPTS - attempts} attempts remaining.`);
+            }
         }
-        attempts--;
-        if (attempts === 0) {
-            document.body.innerHTML = "<h1>Authentication Failed. Access Revoked.</h1>";
-            throw new Error("Access failed."); 
-        }
-        alert(`Incorrect password. ${attempts} attempts remaining.`);
-    }
+        authenticate();
     </script>
-    <div class="container">
-        <h1><i class="fas fa-server"></i> Private Storage Manager</h1>
-        <p class="subtitle"></p>
-        
-        <div class="category-section" id="html-section">
-            <div class="category-header"><i class="fab fa-html5"></i> HTML Markup (.html)</div>
-            <ul class="file-list" id="html-list">
-                <li>
-                    <span class="file-icon html-icon"><i class="fab fa-html5"></i></span>
-                    <span class="file-name">Verification2(Index).html</span>
-                    <span class="file-meta">15 KB</span>
-                    <span class="file-meta">2025/11/30</span>
-                    <a href="index(Remove).html" class="download-btn" download>
-                        <i class="fas fa-download"></i> Download
-                    </a>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="category-section" id="css-section">
-            <div class="category-header"><i class="fab fa-css3-alt"></i> CSS Styles (.css)</div>
-            <ul class="file-list" id="css-list">
+    <div id="content-container"> 
+        <div class="container">
+            <h1><i class="fas fa-server"></i> Private Storage Manager</h1>
+            <p class="subtitle">// Access to your source code and development assets. ** MANUAL UPDATE REQUIRED **</p>
+            
+            <div class="manual-note">
+                <strong>NOTE:</strong> All downloadable file links are set to the **root directory**. Just add/remove <code>&lt;li&gt;...&lt;/li&gt;</code> entries. The page will hide empty categories automatically!
+            </div>
+            
+            <div class="category-section" id="html-section">
+                <div class="category-header"><i class="fab fa-html5"></i> HTML Markup (.html)</div>
+                <ul class="file-list" id="html-list">
+                    <li>
+                        <span class="file-icon html-icon"><i class="fab fa-html5"></i></span>
+                        <span class="file-name">index(Remove).html</span>
+                        <span class="file-meta">15 KB</span>
+                        <span class="file-meta">2025/11/30</span>
+                        <a href="index(Remove).html" class="download-btn" download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </li>
                 </ul>
-        </div>
-        
-        <div class="category-section" id="js-section">
-            <div class="category-header"><i class="fab fa-js-square"></i> JavaScript (.js)</div>
-            <ul class="file-list" id="js-list">
+            </div>
+            
+            <div class="category-section" id="css-section">
+                <div class="category-header"><i class="fab fa-css3-alt"></i> CSS Styles (.css)</div>
+                <ul class="file-list" id="css-list">
+                    </ul>
+            </div>
+            
+            <div class="category-section" id="js-section">
+                <div class="category-header"><i class="fab fa-js-square"></i> JavaScript (.js)</div>
+                <ul class="file-list" id="js-list">
+                    </ul>
+            </div>
+
+            <div class="category-section" id="python-section">
+                <div class="category-header"><i class="fab fa-python"></i> Python Scripts (.py)</div>
+                <ul class="file-list" id="python-list">
+                    <li>
+                        <span class="file-icon py-icon"><i class="fab fa-python"></i></span>
+                        <span class="file-name">bot.py</span>
+                        <span class="file-meta">105 KB</span>
+                        <span class="file-meta">2025/11/28</span>
+                        <a href="bot.py" class="download-btn" download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </li>
                 </ul>
-        </div>
+            </div>
 
-        <div class="category-section" id="python-section">
-            <div class="category-header"><i class="fab fa-python"></i> Python Scripts (.py)</div>
-            <ul class="file-list" id="python-list">
-                <li>
-                    <span class="file-icon py-icon"><i class="fab fa-python"></i></span>
-                    <span class="file-name">bot.py</span>
-                    <span class="file-meta">105 KB</span>
-                    <span class="file-meta">2025/11/28</span>
-                    <a href="bot.py" class="download-btn" download>
-                        <i class="fas fa-download"></i> Download
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="category-section" id="java-section">
-            <div class="category-header"><i class="fab fa-java"></i> Java Source (.java)</div>
-            <ul class="file-list" id="java-list">
+            <div class="category-section" id="java-section">
+                <div class="category-header"><i class="fab fa-java"></i> Java Source (.java)</div>
+                <ul class="file-list" id="java-list">
+                    </ul>
+            </div>
+            
+            <div class="category-section" id="txt-section">
+                <div class="category-header"><i class="fas fa-file-alt"></i> Text/Config Files (.txt, .md, .json)</div>
+                <ul class="file-list" id="txt-list">
+                    <li>
+                        <span class="file-icon txt-icon"><i class="fas fa-file-alt"></i></span>
+                        <span class="file-name">Requirements.txt</span>
+                        <span class="file-meta">2 KB</span>
+                        <span class="file-meta">2025/11/27</span>
+                        <a href="requirements(Remove).txt" class="download-btn" download>
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </li>
                 </ul>
+            </div>
         </div>
-        
-        <div class="category-section" id="txt-section">
-            <div class="category-header"><i class="fas fa-file-alt"></i> Text/Config Files (.txt, .md, .json)</div>
-            <ul class="file-list" id="txt-list">
-                <li>
-                    <span class="file-icon txt-icon"><i class="fas fa-file-alt"></i></span>
-                    <span class="file-name">Requirements.txt</span>
-                    <span class="file-meta">2 KB</span>
-                    <span class="file-meta">2025/11/27</span>
-                    <a href="requirements(Remove).txt" class="download-btn" download>
-                        <i class="fas fa-download"></i> Download
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
