@@ -113,8 +113,7 @@
         .file-list li:last-child {
             border-bottom: none;
         }
-
-        /* File Type Icons */
+        
         .file-icon { font-size: 1.2em; text-shadow: 0 0 5px rgba(187, 134, 252, 0.5); }
         .html-icon { color: #ff6666; } 
         .css-icon { color: #6699ff; } 
@@ -126,7 +125,6 @@
         .file-name { font-weight: 500; color: var(--text-light); }
         .file-meta { color: #8f90a1; font-size: 0.85em; }
 
-        /* DOWNLOAD BUTTON FIX */
         .download-btn {
             display: flex;
             justify-content: center;
@@ -162,28 +160,24 @@
 </head>
 <body>
     <script>
-    const password = "RS Factor"; // CHANGE THIS!
+    const password = "RS Factor";
     let attempts = 3;
     while (attempts > 0) {
         const entry = prompt("Access denied. Please enter the password:");
         if (entry === password) {
-            break; // Correct password, exit loop
+            break; 
         }
         attempts--;
         if (attempts === 0) {
             document.body.innerHTML = "<h1>Authentication Failed. Access Revoked.</h1>";
-            throw new Error("Access failed."); // Stop loading the page
+            throw new Error("Access failed."); 
         }
         alert(`Incorrect password. ${attempts} attempts remaining.`);
     }
     </script>
     <div class="container">
         <h1><i class="fas fa-server"></i> Private Storage Manager</h1>
-        <p class="subtitle">// Access to your source code and development assets. ** MANUAL UPDATE REQUIRED **</p>
-        
-        <div class="manual-note">
-            <strong>NOTE:</strong> All downloadable file links are set to the **root directory**. Just add/remove <code>&lt;li&gt;...&lt;/li&gt;</code> entries. The page will hide empty categories automatically!
-        </div>
+        <p class="subtitle"></p>
         
         <div class="category-section" id="html-section">
             <div class="category-header"><i class="fab fa-html5"></i> HTML Markup (.html)</div>
@@ -249,7 +243,5 @@
         </div>
 
         </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
