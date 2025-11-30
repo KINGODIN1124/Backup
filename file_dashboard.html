@@ -96,7 +96,6 @@
         /* List Item Styling */
         .file-list li {
             display: grid;
-            /* Adjusted grid layout to accommodate fixed button width */
             grid-template-columns: 20px 1fr 100px 120px 160px; 
             gap: 20px;
             align-items: center;
@@ -122,17 +121,18 @@
         .js-icon { color: #ffff66; } 
         .py-icon { color: #66ccee; } 
         .java-icon { color: #ffaa66; } 
+        .txt-icon { color: #aaaaaa; } 
 
         .file-name { font-weight: 500; color: var(--text-light); }
         .file-meta { color: #8f90a1; font-size: 0.85em; }
 
-        /* DOWNLOAD BUTTON FIX: Fixed width applied here */
+        /* DOWNLOAD BUTTON FIX */
         .download-btn {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 160px; /* <--- FIXED WIDTH APPLIED HERE */
-            padding: 10px 0; /* Padding adjusted since width is fixed */
+            width: 160px; 
+            padding: 10px 0;
             background-color: var(--accent-purple);
             color: var(--bg-dark);
             text-decoration: none;
@@ -163,72 +163,77 @@
 <body>
     <div class="container">
         <h1><i class="fas fa-server"></i> Private Storage Manager</h1>
+        <p class="subtitle">// Access to your source code and development assets. ** MANUAL UPDATE REQUIRED **</p>
         
-        <div class="category-header"><i class="fab fa-html5"></i> HTML Markup (.html)</div>
-        <ul class="file-list">
-            <li>
-                <span class="file-icon html-icon"><i class="fab fa-html5"></i></span>
-                <span class="file-name">template_login.html</span>
-                <span class="file-meta">15 KB</span>
-                <span class="file-meta">2025/11/30</span>
-                <a href="./backup/template_login.html" class="download-btn" download>
-                    <i class="fas fa-download"></i> Download
-                </a>
-            </li>
-            </ul>
+        <div class="manual-note">
+            <strong>NOTE:</strong> All downloadable file links are set to the **root directory**. Just add/remove <code>&lt;li&gt;...&lt;/li&gt;</code> entries. The page will hide empty categories automatically!
+        </div>
         
-        <div class="category-header"><i class="fab fa-css3-alt"></i> CSS Styles (.css)</div>
-        <ul class="file-list">
-            <li>
-                <span class="file-icon css-icon"><i class="fab fa-css3-alt"></i></span>
-                <span class="file-name">main_styles.css</span>
-                <span class="file-meta">8 KB</span>
-                <span class="file-meta">2025/11/29</span>
-                <a href="./backup/main_styles.css" class="download-btn" download>
-                    <i class="fas fa-download"></i> Download
-                </a>
-            </li>
+        <div class="category-section" id="html-section">
+            <div class="category-header"><i class="fab fa-html5"></i> HTML Markup (.html)</div>
+            <ul class="file-list" id="html-list">
+                <li>
+                    <span class="file-icon html-icon"><i class="fab fa-html5"></i></span>
+                    <span class="file-name">index(Remove).html</span>
+                    <span class="file-meta">15 KB</span>
+                    <span class="file-meta">2025/11/30</span>
+                    <a href="index(Remove).html" class="download-btn" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </li>
             </ul>
+        </div>
         
-        <div class="category-header"><i class="fab fa-js-square"></i> JavaScript (.js)</div>
-        <ul class="file-list">
-            <li>
-                <span class="file-icon js-icon"><i class="fab fa-js-square"></i></span>
-                <span class="file-name">utility_scripts.js</span>
-                <span class="file-meta">22 KB</span>
-                <span class="file-meta">2025/11/30</span>
-                <a href="./backup/utility_scripts.js" class="download-btn" download>
-                    <i class="fas fa-download"></i> Download
-                </a>
-            </li>
-            </ul>
+        <div class="category-section" id="css-section">
+            <div class="category-header"><i class="fab fa-css3-alt"></i> CSS Styles (.css)</div>
+            <ul class="file-list" id="css-list">
+                </ul>
+        </div>
+        
+        <div class="category-section" id="js-section">
+            <div class="category-header"><i class="fab fa-js-square"></i> JavaScript (.js)</div>
+            <ul class="file-list" id="js-list">
+                </ul>
+        </div>
 
-        <div class="category-header"><i class="fab fa-python"></i> Python Scripts (.py)</div>
-        <ul class="file-list">
-            <li>
-                <span class="file-icon py-icon"><i class="fab fa-python"></i></span>
-                <span class="file-name">discord_bot_core.py</span>
-                <span class="file-meta">105 KB</span>
-                <span class="file-meta">2025/11/28</span>
-                <a href="./backup/discord_bot_core.py" class="download-btn" download>
-                    <i class="fas fa-download"></i> Download
-                </a>
-            </li>
+        <div class="category-section" id="python-section">
+            <div class="category-header"><i class="fab fa-python"></i> Python Scripts (.py)</div>
+            <ul class="file-list" id="python-list">
+                <li>
+                    <span class="file-icon py-icon"><i class="fab fa-python"></i></span>
+                    <span class="file-name">bot.py</span>
+                    <span class="file-meta">105 KB</span>
+                    <span class="file-meta">2025/11/28</span>
+                    <a href="bot.py" class="download-btn" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </li>
             </ul>
+        </div>
 
-        <div class="category-header"><i class="fab fa-java"></i> Java Source (.java)</div>
-        <ul class="file-list">
-            <li>
-                <span class="file-icon java-icon"><i class="fab fa-java"></i></span>
-                <span class="file-name">API_Handler.java</span>
-                <span class="file-meta">35 KB</span>
-                <span class="file-meta">2025/11/27</span>
-                <a href="./backup/API_Handler.java" class="download-btn" download>
-                    <i class="fas fa-download"></i> Download
-                </a>
-            </li>
+        <div class="category-section" id="java-section">
+            <div class="category-header"><i class="fab fa-java"></i> Java Source (.java)</div>
+            <ul class="file-list" id="java-list">
+                </ul>
+        </div>
+        
+        <div class="category-section" id="txt-section">
+            <div class="category-header"><i class="fas fa-file-alt"></i> Text/Config Files (.txt, .md, .json)</div>
+            <ul class="file-list" id="txt-list">
+                <li>
+                    <span class="file-icon txt-icon"><i class="fas fa-file-alt"></i></span>
+                    <span class="file-name">read_me_first.txt</span>
+                    <span class="file-meta">2 KB</span>
+                    <span class="file-meta">2025/11/27</span>
+                    <a href="read_me_first.txt" class="download-btn" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                </li>
             </ul>
+        </div>
 
         </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
